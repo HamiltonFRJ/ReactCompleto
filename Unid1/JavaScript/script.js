@@ -48,7 +48,7 @@ const numeros2 = [13, ...numeros, 24, 32, 32];
 const carro = {
   cor: 'azul',
   portas: 4,
-  modelo: sedan,
+  modelo: 'sedan',
 };
 carroAno = { ...carro, ano: 2020 };
 console.log(carro);
