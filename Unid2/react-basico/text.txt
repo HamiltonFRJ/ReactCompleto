@@ -8,7 +8,7 @@ function App(){
 }
 // É transformado para o Babel em:
 function App(){
-  return React.createElemetn("div", {id: "container"}, "Meu App");
+  return React.createElement("div", {id: "container"}, "Meu App");
 }
 
 Consultar: Babel: https://babeljs.io/repl
@@ -33,7 +33,7 @@ function App() {
 
 // Composição
 
-O princiapl motivo de criarmos componentes é para podermos compor a interfacec com diversos componentes que podem ser reutilizados.
+O principal motivo de criarmos componentes é para podermos compor a interface com diversos componentes que podem ser reutilizados.
 
 const Button = () => {
   return <button>Comprar</button>;
@@ -44,5 +44,39 @@ const MainNav = () => {
       <a href="#">Link 1</a>
       <Button />
     </nav>
+  );
+};
+
+Eventos
+
+Podemos atribuir eventos diretamente aos elementos
+
+const Produtos = () => {
+  function handleClick(event){
+    alert('Comprou: ' + event.target.innerText);
+  }
+
+  return (
+    <div>
+      <button onClick={handleClick}>Camisa</button>
+      <button onClick={handleClick}>Bermuda</button>
+    </div>
+  );
+};
+
+Hooks
+
+Utilizamos o React pelo facilidade de sincronização do estado. Antes dos Hooks, isso só era possível em componentes criados por meio de classes.
+
+const Compras = () => {
+  //useState é um Hook qyue define uma variável reativa
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <div>
+      <button onClick={() => setCount(count +1)}> Comprar: {count}</button>
+      <p>Total: {count}</p>
+      <p>Preço: R$ {count * 250}</p>
+    </div>
   );
 };
