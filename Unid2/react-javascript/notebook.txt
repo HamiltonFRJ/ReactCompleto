@@ -1,0 +1,2 @@
+Entendedo as diferenças entre JavaScript e React com comparação
+
