@@ -1,2 +1,4 @@
 Entendedo as diferenças entre JavaScript e React com comparação
 
+O JavaScript possui muito mais códiog, além disso, é possível ver a estrutura próxima ao código com o React, ao contrário do JavaScript.
+
