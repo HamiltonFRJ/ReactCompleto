@@ -1,0 +1,79 @@
+Webpack
+Agrupa (bundle) o código do seu aplicativo
+Permite definirmos os componentes em diferentes arquivos para melhor organização
+Facilita a importação de código externo instalado via NPM
+
+https://webpack.js.org/
+
+Babel
+Transforma JSX (return <div></div>) em funções React (React.createElement()).
+
+Transforma JavaScript novo (const) em JavaScript antigo (var) 
+
+https://babeljs.io/
+
+Webpack mínimo
+Iniciar um pacote npm na pasta do seu aplicativo
+npm init -y
+
+Instalar o webpack, webpack-cli e webpack-dev-server
+npm install webpack webpack-cli webpack-dev-server --save-dev
+
+Criar arquivos mínimos 
+- index.html
+- src/
+  - index.js
+
+Inserir as seguintes linha no package.json
+"scripts": {
+  "start": "webpack serve --mode development --open --hot",
+  "build": "webpack --mode production"
+},
+
+Além disso, com a atualização das versões, é necessário descrever no arquivo de configuração do webpack o local do index.html, que é preciso informar que está na pasta raiz, portanto, insira o seguinte comando no arquvio webpack.config.js
+
+module.exports = {
+  devServer: {
+    static: './',
+  },
+};
+
+React
+
+npm install react react-dom
+
+No código para importar
+import ReactDOM from 'react-dom';
+import React from 'react';
+import App from './App';
+
+Babel
+Instala @babel/core, @babel/preset-react e babel-loader
+npm install @babel/core @babel/preset-react babel-loader --save-dev
+
+Criar o webpack.config.js para configurarmos o babel no webpack
+module.exports = {
+  // Nos módulos
+  module: {
+    // Aplique as seguintes regras
+    rules: {
+      // Nos arquivos que terminam ($) com .js
+      test: /\.js$/,
+      // Não procure nada em node_modules
+      exclude: /node_modules/,
+      // Use o seguinte:
+      use : {
+         // Babel
+         loader: 'babel-loader',
+         // Com as opções padrões para o React
+         options: {
+          presets: ['@babel/preset-react'],
+         },
+        },
+      },
+    },
+  },
+},
+
+
+ 
