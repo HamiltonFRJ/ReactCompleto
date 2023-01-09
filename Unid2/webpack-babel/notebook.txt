@@ -53,27 +53,36 @@ npm install @babel/core @babel/preset-react babel-loader --save-dev
 
 Criar o webpack.config.js para configurarmos o babel no webpack
 module.exports = {
+  // indica que o devserver deve utilizar a raiz para servir o html.
+  // atualização de 2021
+  devServer: {
+    static: './',
+  },
   // Nos módulos
   module: {
     // Aplique as seguintes regras
-    rules: {
-      // Nos arquivos que terminam ($) com .js
-      test: /\.js$/,
-      // Não procure nada em node_modules
-      exclude: /node_modules/,
-      // Use o seguinte:
-      use : {
-         // Babel
-         loader: 'babel-loader',
-         // Com as opções padrões para o React
-         options: {
-          presets: ['@babel/preset-react'],
-         },
+    rules: [
+      {
+        // Nos arquivos que terminam ($) com .js
+        test: /\.js$/,
+        // Não procure nada em node_modules
+        exclude: /node_modules/,
+        // Use o seguinte:
+        use: {
+          // Babel
+          loader: 'babel-loader',
+          // Com as opções padrões para o React
+          options: {
+            presets: ['@babel/preset-react'],
+          },
         },
       },
-    },
+    ],
   },
-},
+};
 
+Loaders CSS
+O Webpack é instalado com o mínimo de pacotes possíveis para funcionar com o JavaScript. Para adicionarmos outras funcionalidades, como a importação de CSS, imagens, SVG e etc, precisamos adicionar loaders específicos para cada situação.
 
+npm install style-loader css-loader --save-dev
  
