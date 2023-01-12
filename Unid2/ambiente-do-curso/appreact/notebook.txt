@@ -4,13 +4,13 @@ JavaScript XML / Extension. Estende a sintaxe do JavaScript, introduzindo elemen
 const App = () => {
   return <button>Comprar</button>;
 };
-COPIAR
+
 É transformado em
 
 const App = () => {
   return React.createElement('button', null, 'Comprar');
 };
-COPIAR
+
 É possível utilizar a extensão .jsx
 
 Atributos
@@ -23,14 +23,14 @@ const App = () => {
     </a>
   );
 };
-COPIAR
+
 Casos Especiais
 O caso especial mais comum é o atributo class. Pelo fato de class ser uma palavra reservada do JavaScript, o JSX resolveu mudar o nome para evitar conflitos. O correto é className.
 
 const App = () => {
   return <div className="grid">Origamid</div>;
 };
-COPIAR
+
 const App = () => {
   return (
     <form>
@@ -39,7 +39,7 @@ const App = () => {
     </form>
   );
 };
-COPIAR
+
 https://reactjs.org/docs/dom-elements.html
 
 camelCase
@@ -48,7 +48,7 @@ Atributos com nomes compostos devem ser utilizados como camelCase. Exemplo: auto
 const App = () => {
   return <video autoPlay />;
 };
-COPIAR
+
 Expressões / Variáveis
 Expressões e variáveis podem ser colocadas dentro do JSX, utilizando chaves {}.
 
@@ -56,18 +56,18 @@ const App = () => {
   const nome = 'André';
   return <p>{nome}</p>;
 };
-COPIAR
+
 const App = () => {
   const desconto = 50;
   const preco = 250;
   return <p>{preco - desconto}</p>;
 };
-COPIAR
+
 const App = () => {
   const ativo = true;
   return <p className={ativo ? 'ativo' : 'inativo'}>Estoque</p>;
 };
-COPIAR
+
 Também posso atribuir JSX direto a uma constante/variável
 
 const Titulo = <h1>Meu título</h1>;
@@ -75,7 +75,7 @@ const Titulo = <h1>Meu título</h1>;
 const App = () => {
   return <div>{Titulo}</div>;
 };
-COPIAR
+
 JSX Expressões
 Você pode executar qualquer expressão dentro das chaves {}. Se o resultado da expressão for um número, string ou array de números/strings o resultado irá aparecer na tela. Booleanos (true/false), undefined e null não irão resultar em nada na tela. Objetos irão retornar um erro.
 
@@ -112,7 +112,7 @@ const App = () => {
     </div>
   );
 };
-COPIAR
+
 Style
 O style irá receber um objeto com as propriedades do elemento em camelCase.
 
