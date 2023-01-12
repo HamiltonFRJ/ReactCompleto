@@ -1,0 +1,132 @@
+JSX
+JavaScript XML / Extension. Estende a sintaxe do JavaScript, introduzindo elementos como XML que são convertidos em funções de React.
+
+const App = () => {
+  return <button>Comprar</button>;
+};
+COPIAR
+É transformado em
+
+const App = () => {
+  return React.createElement('button', null, 'Comprar');
+};
+COPIAR
+É possível utilizar a extensão .jsx
+
+Atributos
+Atributos podem ser passados como no HTML, porém com alguns casos especiais.
+
+const App = () => {
+  return (
+    <a href="https://www.origamid.com" title="Site Origamid">
+      Origamid
+    </a>
+  );
+};
+COPIAR
+Casos Especiais
+O caso especial mais comum é o atributo class. Pelo fato de class ser uma palavra reservada do JavaScript, o JSX resolveu mudar o nome para evitar conflitos. O correto é className.
+
+const App = () => {
+  return <div className="grid">Origamid</div>;
+};
+COPIAR
+const App = () => {
+  return (
+    <form>
+      <label htmlFor="nome">Nome</label>
+      <input type="text" id="nome" />
+    </form>
+  );
+};
+COPIAR
+https://reactjs.org/docs/dom-elements.html
+
+camelCase
+Atributos com nomes compostos devem ser utilizados como camelCase. Exemplo: autoplay vira autoPlay.
+
+const App = () => {
+  return <video autoPlay />;
+};
+COPIAR
+Expressões / Variáveis
+Expressões e variáveis podem ser colocadas dentro do JSX, utilizando chaves {}.
+
+const App = () => {
+  const nome = 'André';
+  return <p>{nome}</p>;
+};
+COPIAR
+const App = () => {
+  const desconto = 50;
+  const preco = 250;
+  return <p>{preco - desconto}</p>;
+};
+COPIAR
+const App = () => {
+  const ativo = true;
+  return <p className={ativo ? 'ativo' : 'inativo'}>Estoque</p>;
+};
+COPIAR
+Também posso atribuir JSX direto a uma constante/variável
+
+const Titulo = <h1>Meu título</h1>;
+
+const App = () => {
+  return <div>{Titulo}</div>;
+};
+COPIAR
+JSX Expressões
+Você pode executar qualquer expressão dentro das chaves {}. Se o resultado da expressão for um número, string ou array de números/strings o resultado irá aparecer na tela. Booleanos (true/false), undefined e null não irão resultar em nada na tela. Objetos irão retornar um erro.
+
+const App = () => {
+  function meuNome() {
+    return 'André';
+  }
+
+  function quadrado(x) {
+    return x * x;
+  }
+
+  const carro = {
+    rodas: 4,
+    marca: 'Ford',
+  };
+
+  return (
+    <div>
+      <p>{'MINHA EMPRESA'.toLowerCase()}</p>
+      <p>{30 * 2}</p>
+      <p>{true}</p>
+      <p>{undefined}</p>
+      <p>{(() => 'Função Executada')()}</p>
+      <p>{meuNome()}</p>
+      <p>{quadrado(2)}</p>
+      <p>{quadrado(2) === 4 ? 'Fórmula correta' : 'Fórmula incorreta'}</p>
+      <p>{quadrado(2) === 4 && 'Fórmula correta'}</p>
+      <p>{Date.now()}</p>
+      <p>{new Date().getFullYear()}</p>
+      <p>
+        Marca: {carro.marca}, Rodas: {carro.rodas}
+      </p>
+    </div>
+  );
+};
+COPIAR
+Style
+O style irá receber um objeto com as propriedades do elemento em camelCase.
+
+const App = () => {
+  const estiloH1 = {
+    color: 'blue',
+    fontSize: '20px',
+    fontFamily: 'Helvetica',
+  };
+
+  return (
+    <div>
+      <h1 style={estiloH1}>Empresa</h1>
+      <p style={{ color: 'green' }}>Sempre aberta</p>
+    </div>
+  );
+};
