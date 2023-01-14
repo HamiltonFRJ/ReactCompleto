@@ -1,10 +1,27 @@
 import React from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import Form from './Form/Form';
+
+const Teste = () => {
+  const active = true;
+  if (active) {
+    return true;
+  } else {
+    return null;
+  }
+};
 
 const App = () => {
-  function handleClick(event) {
-    console.log(event.target);
-  }
-  return <button onClick={(event) => console.log(event)}>Clique</button>;
+  return (
+    <>
+      <Teste />
+      <Header />
+      <Form />
+      <p>Esse é o meu aplicativo</p>
+      <Footer />
+    </>
+  );
 };
 
 export default App;

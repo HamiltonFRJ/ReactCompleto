@@ -1,0 +1,28 @@
+Eventos
+
+Podemos atribuir eventos diretamente aos elelmetnos JSX como um atributo. OS eventos são sintaticos, ou seja, são criados pelo próprio React porem seguindo as especificações da W3C (e funcionam igualmente nos diversos browsers que o React suporta).
+
+const App () => {
+  function handleClick(event){
+    alert('Comprou: ' + event.target.innerText);
+  }
+  return(
+    <div>
+      <button onClick={handleClick}>Camisa</button>
+      <button onClick={handleClick}>Bermuda</button>
+    </div>
+  );
+}
+
+Lista de eventos: https://reactjs.org/docs/events.html
+
+Função Anonima
+É possível executar uma função anônima no evento.
+
+const App = () => {
+  return (
+    <button onClick={({ target }) => target.classList.toggle('ativa')}>
+      Ativar
+    </button>
+  );
+};
