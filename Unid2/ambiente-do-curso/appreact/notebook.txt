@@ -1,78 +1,55 @@
-Componentes
-O ideal é dividir o aplicativo em pequenos componentes para facilitar a manutenção do mesmo. Iremos trabalhar durante o curso com os chamados componentes funcionais
+Propriedades
+Assim como uma função pode receber argumentos, podemos também passar argumentos aos componentes. Esses são conhecidos como Propriedades ou props
 
-import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
+const Titulo = (props) => {
+  return <h1 style={{ color: props.cor }}>{props.texto}</h1>;
+};
 
 const App = () => {
   return (
     <div>
-      <Header />
-      <p>Esse é o meu aplicativo</p>
-      <Footer />
+      <Titulo cor="red" texto="Meu Título 1" />
+      <Titulo cor="blue" texto="Meu Título 2" />
+      <Titulo cor="green" texto="Meu Título 3" />
     </div>
   );
 };
 
-export default App;
+Children
+Se utilizarmos o componente abrindo e fechando o mesmo, o conteúdo interno deste será acessado atrave's da propriedade children
 
-Interface
+const Titulo = ({ cor, texto, children }) => {
+  return (
+    <h1 style={{ color: cor }}>
+      {texto}, {children}
+    </h1>
+  );
+};
 
-Não existe limite para a composição de componentes, eles podem ser desde componentes gerais como Header e Footer, até micro componentees como Input e Button.
+const App = () => {
+  return (
+    <div>
+      <Titulo cor="red" texto="Meu Título 1">
+        Isso é o children
+      </Titulo>
+      <Titulo cor="blue" texto="Meu Título 2" />
+      <Titulo cor="green" texto="Meu Título 3" />
+    </div>
+  );
+};
 
-*Utilize rafceTAB para a criação rápida do componente*
-
-Form.js
+Rest e Spread
+Usamos o rest e o spread quando não sabemos todas as propriedades que um componente pode receber.
 
 import React from 'react';
-import Button from './Button';
-import Input from './Input';
 
-const Form = () => {
+const Input = ({ label, id, ...props }) => {
   return (
-    <form>
-      <p>
-        <label htmlFor="nome">Nome</label>
-        <Input />
-      </p>
-      <p>
-        <label htmlFor="email">Email</label>
-        <Input />
-      </p>
-      <Button />
-    </form>
+    <div>
+      <label htmlFor={id}>{label}</label>
+      <input id={id} type="text" {...props} />
+    </div>
   );
 };
 
-export default Form;
-
-Return
-Um componente deve sempre retornar algo. O retorno pode seer qualquer tipo de  dado aceitado pelo JSX (string, array, um elemento JSX, null, etc).
-Não retorna objeto
-
-React.Fragment
-Um componente deve sermpre retornar um elemento único no return. Caso vocë deseje retornar mais de um elemento, envolva os mesmos em uma div ou dentro do 
-<React.Frament></React.Frament> ou <></>
-
-const App = () => {
-  return (
-    <React.Fragment>
-      <Header />
-      <Form />
-      <Footer />
-    </React.Fragment>
-  );
-};
-
-É a mesma coisa que 
-
-const App = () => {
-  return (
-    <>
-      <Header />
-      <Form />
-      <Footer />
-    </>
-  );
-};
+export default Input;
