@@ -1,0 +1,55 @@
+Propriedades
+Assim como uma função pode receber argumentos, podemos também passar argumentos aos componentes. Esses são conhecidos como Propriedades ou props
+
+const Titulo = (props) => {
+  return <h1 style={{ color: props.cor }}>{props.texto}</h1>;
+};
+
+const App = () => {
+  return (
+    <div>
+      <Titulo cor="red" texto="Meu Título 1" />
+      <Titulo cor="blue" texto="Meu Título 2" />
+      <Titulo cor="green" texto="Meu Título 3" />
+    </div>
+  );
+};
+
+Children
+Se utilizarmos o componente abrindo e fechando o mesmo, o conteúdo interno deste será acessado atrave's da propriedade children
+
+const Titulo = ({ cor, texto, children }) => {
+  return (
+    <h1 style={{ color: cor }}>
+      {texto}, {children}
+    </h1>
+  );
+};
+
+const App = () => {
+  return (
+    <div>
+      <Titulo cor="red" texto="Meu Título 1">
+        Isso é o children
+      </Titulo>
+      <Titulo cor="blue" texto="Meu Título 2" />
+      <Titulo cor="green" texto="Meu Título 3" />
+    </div>
+  );
+};
+
+Rest e Spread
+Usamos o rest e o spread quando não sabemos todas as propriedades que um componente pode receber.
+
+import React from 'react';
+
+const Input = ({ label, id, ...props }) => {
+  return (
+    <div>
+      <label htmlFor={id}>{label}</label>
+      <input id={id} type="text" {...props} />
+    </div>
+  );
+};
+
+export default Input;
