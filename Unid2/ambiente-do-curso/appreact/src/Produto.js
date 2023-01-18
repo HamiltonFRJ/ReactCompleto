@@ -7,9 +7,12 @@ const Produto = () => {
   ];
 
   return produtos.map(({ nome, propriedades }) => (
-    <div style={{ border: '1px solid', margin: '1rem 0', padding: '1rem' }}>
-      <p key={nome}>{nome}</p>
-      <p key={propriedades}>{propriedades}</p>
+    <div
+      key={nome}
+      style={{ border: '1px solid', margin: '1rem 0', padding: '1rem' }}
+    >
+      <p>{nome}</p>
+      <p>{propriedades}</p>
     </div>
   ));
 };
