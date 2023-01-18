@@ -1,8 +1,35 @@
-// Replique a interface como a apresentada na aula
-// Utilize a array abaixo para mostrar os produtos
-// Quebre em componentes o que precisar ser reutilizado
-// Dica: const { pathname } = window.location; (puxa o caminho do URL)
-const produtos = [
-  { nome: 'Notebook', propriedades: ['16gb ram', '512gb'] },
-  { nome: 'Smartphone', propriedades: ['2gb ram', '128gb'] },
-];
+Hooks
+Estado:
+É uma representação da aplicação no momento exato.
+Exemplo: Botão ativo, campo ativo.
+
+const App = () => {
+  const ativo = true;
+
+  return(
+    <button disabled={!ativo}>{ativo ? "Botão Ativo" : "Botão Inativo"}</button>
+  )
+}
+
+NOTA
+
+const App = () => {
+  let ativo = true;
+
+  function handleClick() {
+    ativo = !ativo;
+    console.log(ativo);
+  }
+
+  return (
+    <button disabled={!ativo} onClick={handleClick}>
+      {ativo ? 'Botão Ativo' : 'Botão Inativo'}
+    </button>
+  );
+};
+
+Mesmo com essa aplicação o botão näo fica inativo após o clique, por que a aplicação não renderiza novamente. Para isso que serve o Hooks.
+
+Hooks
+Os Hooks säo funçoes especiais do React que permitem controlarmos o estado e o ciclo de vida de componentes fucionais. Isso antes só era possível com classes.
+

@@ -1,23 +1,15 @@
 import React from 'react';
-import Header from './Header';
-import Home from './Home';
-import Produtos from './Produtos';
 
 const App = () => {
-  let Pagina = Home;
-  const { pathname } = window.location;
-  if (pathname === '/produtos') {
-    Pagina = Produtos;
-  } else {
-    Pagina = Home;
-  }
+  const ativoHook = React.useState(false);
 
-  return (
-    <section>
-      <Header />
-      <Pagina />
-    </section>
-  );
+  console.log(ativoHook);
+  // function handleClick() {
+  //   ativo = !ativo;
+  //   console.log(ativo);
+  // }
+
+  return <div></div>;
 };
 
 export default App;
