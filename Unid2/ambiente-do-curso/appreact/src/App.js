@@ -4,10 +4,11 @@ import Modal from './Modal';
 
 const App = () => {
   const [modal, setModal] = React.useState(false);
+  // Essa constante representa as posições 0 e 1, que desestruturadas contem o valor na posição 0, e a função de troca na posição 1.
   return (
     <div>
       <Modal modal={modal} setModal={setModal} />
-      <ButtonModal setModal={setModal} />
+      <ButtonModal modal={modal} setModal={setModal} />
     </div>
   );
 };

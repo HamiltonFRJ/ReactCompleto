@@ -65,6 +65,33 @@ const App = () => {
 
 return <div></div>
 
+Caso vocÊ queira incrementar informação de um objeto, você pode fazer por meio de desestruturação
+
+import React from 'react';
+
+const App = () => {
+  const [ativo, setAtivo] = React.useState(false);
+  const [dados, setDados] = React.useState({nome: "Hamilton", idade: "21"});
+
+  function handleClick(){
+    setAtivo(!ativo);
+    setDados({...dados, estado: "Casado"})
+  }
+  return (
+    <div>
+      <p>{dados.nome}</p>
+      <p>{dados.idade}</p>
+      <p>{dados.estado}</p>
+      <button onClick={handleClick}>{ativo ? "Ativo" : "Inativo"}</button>
+    </div>
+  );
+};
+
+export default App;
+
+Na hora de fazer a separação dos dados, sempre use os objetos com a forma de configuração conjunta.
+Por exemplo, você nunca irá utilizar a identificação sem o nome, ou endereço, idade... Então, são dados que devem manter-se em um objeto apenas.
+
 Props
 
-Podemos passar o estado e a função de modificação como proipriedades para outros elementos.
+Podemos passar o estado e a função de modificação como propriedades para outros elementos.
