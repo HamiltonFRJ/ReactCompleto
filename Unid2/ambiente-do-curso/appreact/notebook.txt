@@ -95,3 +95,87 @@ Por exemplo, você nunca irá utilizar a identificação sem o nome, ou endereç
 Props
 
 Podemos passar o estado e a função de modificação como propriedades para outros elementos.
+
+Reatividade
+Não modifique o estado diretamente. Utilize sempre a função de atualização do estado, pois ela que garante a reatividade dos componentes.
+const App = () => {
+  const [itens, setItens] = React.useState(["Item 1", "Item 2"])
+  function handleClick(){
+    itens.push("Novo Item"); --> Errado. Modifique o estado apenas com a função de atualização a seguir
+  }
+  function handleClickReativo(){
+    setItens([...itens, "Novo Item"]);
+  }
+  return (
+    <>
+  )
+}
+
+Callback 
+Podemos passar uma função de callback para atualizar o estado. A função de callback recebe um parÂmetro que representa o valor anterior e ir modificar o estado para o valor que for retornado na função.
+
+const App = () => {
+  const [ativo, setAtivo] = React.useState(true);
+
+  function handleClick() {
+    // usando um callback
+    setAtivo((anterior) => !anterior);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      {ativo ? 'Está Ativo' : 'Está Inativo'}
+    </button>
+  );
+};
+
+Callback Valor Inicial 
+
+const App = () => {
+  // Callback no estado inicial, só será executado na criação do componente
+  const [ativo, setAtivo] = React.useState(() => {
+    const ativoLocal = window.localStorage.getItem('ativo');
+    return ativoLocal;
+  });
+
+  function handleClick() {
+    setAtivo((anterior) => !anterior);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      {ativo ? 'Está Ativo' : 'Está Inativo'}
+    </button>
+  );
+};
+
+React.StrictMode
+O modo estrito invoca duas vezes a renderizacao do componente, quando o estado  atualizado. Assim e possível identificarmos funcoes com efetiso colaterais (side effects) e eliminarmos as mesmas.
+
+Funcoes com efetios colaterais sao aquelas que modificam estados que estao fora das mesmas. 
+
+const Contador = () => {
+  const [contar, setContar] = React.useState(1);
+  const [items, setItems] = React.useState(['Item 1']);
+
+  function handleClick() {
+    setContar((contar) => {
+      // setContar possui um efeito colateral.
+      setItems((items) => [...items, 'Item ' + (contar + 1)]);
+      return contar + 1;
+    });
+    // Tirar o efeito de dentro do setContar irá concertar o erro
+    // setItems((items) => [...items, 'Item ' + (contar + 1)]);
+  }
+
+  return (
+    <>
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+      <button onClick={handleClick}>{contar}</button>
+    </>
+  );
+};
+
+
