@@ -1,21 +1,29 @@
 import React from 'react';
-import ButtonModal from './ButtonModal';
-import Modal from './Modal';
 
 const App = () => {
-  const [modal, setModal] = React.useState(
-    true,
-    /*() => {
-    const ativo = window.localStorage.getItem('ativo');
-    return ativo;
-  }*/
-  );
-  // Essa constante representa as posições 0 e 1, que desestruturadas contem o valor na posição 0, e a função de troca na posição 1.
+  const [contador, setContar] = React.useState(1);
+  const [item, setItem] = React.useState(['Item 1']);
+
+  function handleClick() {
+    setContar(contador + 1);
+    setItem([...item, 'Item ' + (contador + 1)]);
+  }
+
+  /*
+  function handleClick() {
+    setContar((contador) => {
+      return contador + 1
+    });
+    setItem((item) => [...item, 'Item ' + (contador + 1)]);
+  }
+  */
 
   return (
     <div>
-      <Modal modal={modal} setModal={setModal} />
-      <ButtonModal modal={modal} setModal={setModal} />
+      {item.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+      <button onClick={handleClick}>{contador}</button>
     </div>
   );
 };
